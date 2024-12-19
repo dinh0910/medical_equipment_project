@@ -1,3 +1,4 @@
+const { where } = require('sequelize');
 const MedicalDevice = require('../models/MedicalDevice');
 const MedicalDeviceManage = require('../models/MedicalDeviceManage');
 
@@ -10,6 +11,17 @@ const index = async (req, res) => {
         res.status(500).send(err.message);
     }
 };
+
+const detail = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const rs = await MedicalDevice.findAll({ where: { medicalDeviceManageId: id } });
+        res.render('detail', { title: 'Medical Device Detail', data: rs });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+}
 
 const addMedicalDeviceManagement = async (req, res) => {
     const { tenQuanLy } = req.body;
@@ -56,4 +68,4 @@ const addMedicalDevices = async (req, res) => {
     }
 };
 
-module.exports = { index, addMedicalDeviceManagement, addMedicalDevices };
+module.exports = { index, addMedicalDeviceManagement, addMedicalDevices, detail };

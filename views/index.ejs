@@ -56,45 +56,52 @@
         </thead>
         <tbody>
             <% data.forEach(function(res) { %>
-            <tr>
-                <td>
-                    <div>
-                        <a href="#"
-                            class="btn btn-sm btn-primary"
-                            data-bs-toggle="tooltip"
-                            data-bs-title="View">
-                            <svg class="bi"><use
-                                    xlink:href="#eye" /></svg>
-                        </a>
-                        <a href="#"
-                            class="btn btn-sm btn-primary"
-                            data-bs-toggle="tooltip"
-                            data-bs-title="Generate file excel">
-                            <svg class="bi"><use
-                                    xlink:href="#generate" /></svg>
-                        </a>
-                        <a href="#"
-                            class="btn btn-sm btn-primary"
-                            data-bs-toggle="tooltip"
-                            data-bs-title="Edit">
-                            <svg class="bi"><use
-                                    xlink:href="#edit" /></svg>
-                        </a>
-                        <a href="#"
-                            class="btn btn-sm btn-danger"
-                            data-bs-toggle="tooltip"
-                            data-bs-title="Delete">
-                            <svg class="bi"><use
-                                    xlink:href="#delete" /></svg>
-                        </a>
-                    </div>
-                </td>
-                <td><%= res.tenQuanLy %></td>
-                <td>
-                    <%= new Date(res.createdAt).toLocaleString('vi-VN') %>
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <a href="/detail/<%= res.id %>"
+                                class="btn btn-sm btn-primary"
+                                data-bs-toggle="tooltip"
+                                data-bs-title="View">
+                                <svg class="bi"><use
+                                        xlink:href="#eye" /></svg>
+                            </a>
+                            <a href="#"
+                                class="btn btn-sm btn-primary"
+                                data-bs-toggle="tooltip"
+                                data-bs-title="Generate file excel">
+                                <svg class="bi"><use
+                                        xlink:href="#generate" /></svg>
+                            </a>
+                            <a href="#"
+                                class="btn btn-sm btn-primary"
+                                data-bs-toggle="tooltip"
+                                data-bs-title="Edit">
+                                <svg class="bi"><use
+                                        xlink:href="#edit" /></svg>
+                            </a>
+                            <a href="#"
+                                class="btn btn-sm btn-danger"
+                                data-bs-toggle="tooltip"
+                                data-bs-title="Delete">
+                                <svg class="bi"><use
+                                        xlink:href="#delete" /></svg>
+                            </a>
+                        </div>
+                    </td>
+                    <td><%= res.tenQuanLy %></td>
+                    <td>
+                        <%= new Date(res.createdAt).toLocaleString('vi-VN') %>
+                    </td>
+                </tr>
             <% }); %>
+            <% if (data.length == 0) { %>
+                <tr>
+                    <td colspan="3" class="text-center">
+                        No data available
+                    </td>
+                </tr>
+            <% } %>
         </tbody>
     </table>
 </div>

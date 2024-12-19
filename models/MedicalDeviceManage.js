@@ -10,6 +10,10 @@ const MedicalDeviceManage = sequelize.define('MedicalDeviceManage', {
     tenQuanLy: {
         type: DataTypes.STRING,
         allowNull: true
+    },
+    deleted: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
     }
 }, {
     tableName: 'medical_device_manage'

@@ -7,7 +7,7 @@ const MedicalDevice = sequelize.define('MedicalDevice', {
         autoIncrement: true,
         primaryKey: true
     },
-    medicalDeviceManage: {
+    medicalDeviceManageId: {
         type: DataTypes.INTEGER,
         allowNullL: false
     },
@@ -51,7 +51,10 @@ const MedicalDevice = sequelize.define('MedicalDevice', {
         type: DataTypes.STRING,
         allowNull: true
     },
-
+    deleted: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    }
 }, {
     tableName: 'medical_devices'
 });
