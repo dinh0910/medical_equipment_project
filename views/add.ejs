@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous">
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h2></h2>
+            <form class="row g-3" action="/add-medical-device" method="POST">
+                <div class="col-md-6">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Khoa</span>
+                        <select id="inputKhoa" name="khoa"
+                            class="form-select">
+                            <option selected>Choose...</option>
+                            <option>CDHA</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Kỹ sư</span>
+                        <input onchange class="form-control input-sm"
+                            name="kySu" id="inputKySu" type="text">
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Tên thiết bị</span>
+                        <input class="form-control input-sm"
+                            name="tenThietBi" id="tenThietBi"
+                            type="text">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Model</span>
+                        <input class="form-control input-sm" id="inputModel"
+                            name="soModel" type="text">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Số seri</span>
+                        <input class="form-control input-sm" id="inputSoSeri"
+                            name="soSeri" type="text">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Năm sử dụng</span>
+                        <input class="form-control input-sm" id="inputNamSuDung"
+                            name="namSuDung" type="text">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Tình trạng thiết
+                            bị</span>
+                        <textarea class="form-control" id="inputTinhTrang"
+                            name="tinhTrang" id
+                            aria-label="With textarea"></textarea>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Ý kiến giám định</span>
+                        <textarea class="form-control" id="inputYKien"
+                            name="yKien"
+                            aria-label="With textarea"></textarea>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Nội dung sữa chữa</span>
+                        <textarea class="form-control" id="inputNoiDung"
+                            name="noiDung"
+                            aria-label="With textarea"></textarea>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <label class="form-check-label">
+                        Chi phí
+                    </label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="Có"
+                            name="chiPhi" id="inputChiPhi_Co">
+                        <label class="form-check-label" for="inputChiPhi_Co">
+                            Có
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio"
+                            value="Không" name="chiPhi"
+                            id="inputChiPhi_Khong">
+                        <label class="form-check-label" for="inputChiPhi_Khong">
+                            Không
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio"
+                            value="Liên hệ công ty" name="chiPhi"
+                            id="inputChiPhi_LienHe" checked>
+                        <label class="form-check-label"
+                            for="inputChiPhi_LienHe">
+                            Liên hệ công ty
+                        </label>
+                    </div>
+                </div>
+                <div class="d-flex flex-row-reverse">
+                    <input type="submit"
+                        class="btn btn-outline-primary" value="Submit"
+                        style="margin-right:30px;">
+
+                    <button type="button" id="btnExport"
+                        class="btn btn-outline-secondary"
+                        style="margin-right: 10px;">
+                        Xuất file
+                    </button>
+                </div>
+            </form>
+
+            <table class="table" id="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Khoa</th>
+                        <th scope="col">Kỹ Sư</th>
+                        <th scope="col">Tên TB</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Số Seri</th>
+                        <th scope="col">Năm SD</th>
+                        <th scope="col">Tình Trạng</th>
+                        <th scope="col">Ý Kiến</th>
+                        <th scope="col">Nội Dung</th>
+                        <th scope="col">Chi Phí</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <script>
+            function create() {      
+                var khoa = document.getElementById("inputKhoa").value
+                var kySu = document.getElementById("inputKySu").value
+                var tenTB = document.getElementById("inputTenThietBi").value
+                var model = document.getElementById("inputModel").value
+                var soSeri = document.getElementById("inputSoSeri").value
+                var namSd = document.getElementById("inputNamSuDung").value
+                var tinhTrang = document.getElementById("inputTinhTrang").value
+                var yKien = document.getElementById("inputYKien").value
+                var noiDung = document.getElementById("inputNoiDung").value
+                var cp = document.getElementsByName("inputChiPhi")
+                                    
+                const tableElement = document.getElementById('table')
+                const trElement = document.createElement('tr');
+                const tbodyElement = document.createElement('tbody');                       
+                const khoainput = document.createElement('td');
+                const kySuinput = document.createElement('td');
+                const tenTBinput = document.createElement('td');
+                const modelinput = document.createElement('td');
+                const soSeriinput = document.createElement('td');
+                const namSdinput = document.createElement('td');
+                const tinhTranginput = document.createElement('td');
+                const yKieninput = document.createElement('td');
+                const noiDunginput = document.createElement('td');
+                const cpinput = document.createElement('td');
+
+                // document.createElement("chiPhi").innerHTML = getSelectedValue(cp)
+
+                khoainput.innerHTML = khoa
+                kySuinput.innerHTML = kySu
+                tenTBinput.innerHTML = tenTB
+                modelinput.innerHTML = model
+                soSeriinput.innerHTML = soSeri
+                namSdinput.innerHTML = namSd
+                tinhTranginput.innerHTML = tinhTrang
+                yKieninput.innerHTML = yKien
+                noiDunginput.innerHTML = noiDung
+                cpinput.innerHTML = getSelectedValue(cp)
+                
+                trElement.appendChild(khoainput);
+                trElement.appendChild(kySuinput);
+                trElement.appendChild(tenTBinput);
+                trElement.appendChild(modelinput);
+                trElement.appendChild(soSeriinput);
+                trElement.appendChild(namSdinput);
+                trElement.appendChild(tinhTranginput);
+                trElement.appendChild(yKieninput);
+                trElement.appendChild(noiDunginput);
+                trElement.appendChild(cpinput);
+
+                tbodyElement.appendChild(trElement);
+                tableElement.appendChild(tbodyElement);
+
+                console.log(tableElement)
+            }
+                
+            
+            function getSelectedValue(radios) {
+                let selectedValue;
+                for (const radio of radios) {
+                    if (radio.checked) {
+                        selectedValue = radio.value;
+                        break;
+                    }
+                }
+                return selectedValue;
+            }
+
+            
+
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.6.3.js"
+            integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+            crossorigin="anonymous"></script>
+        <script
+            src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#btnExport").click(function () {
+                    let table = document.getElementsByTagName("table");
+                    console.log(table);
+                    debugger;
+                    TableToExcel.convert(table[0], {
+                        name: `UserManagement.xlsx`,
+                        sheet: {
+                            name: 'Usermanagement'
+                        }
+                    });
+                });
+            });
+        </script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+            integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+            crossorigin="anonymous"></script>
+    </body>
+</html>
